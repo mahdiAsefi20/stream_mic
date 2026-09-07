@@ -1,0 +1,7 @@
+# No pip dependencies needed.
+# stream_mic.py uses only the Python standard library.
+#
+# System requirements:
+#   - Python >= 3.10 (uses `dict | None` syntax)
+#   - ffmpeg binary in PATH (https://ffmpeg.org/download.html)
+#     Windows (winget): winget install Gyan.FFmpeg
