@@ -408,6 +408,12 @@ class App:
         self.card1.pack(fill="x", pady=6)
         self._card_title(self.card1, "⚙️  تنظیمات اتصال")
 
+        # NOTE: card1's title uses pack, so all grid widgets must live
+        # inside this inner form frame (never mix pack+grid in one parent).
+        form = ttk.Frame(self.card1, style="Card.TFrame")
+        form.pack(fill="x")
+        form.columnconfigure(0, weight=1)
+
         self.api_var = tk.StringVar(value=self.cfg.get("api_base", DEFAULT_API_BASE))
         self.user_var = tk.StringVar(value=self.cfg.get("username", ""))
         self.pass_var = tk.StringVar(value=self.cfg.get("password", "") if self.cfg.get("remember_password") else os.environ.get("NEVISAR_PASSWORD", ""))
@@ -416,13 +422,13 @@ class App:
         self.auto_var = tk.BooleanVar(value=bool(self.cfg.get("auto_start", False)))
         self.show_var = tk.BooleanVar(value=False)
 
-        self._row(self.card1, 0, "آدرس API نویزار", self.api_var, show=None)
-        self._row(self.card1, 1, "نام کاربری (ادمین)", self.user_var, show=None)
-        pw_entry = self._row(self.card1, 2, "رمز عبور", self.pass_var, show="•")
+        self._row(form, 0, "آدرس API نویزار", self.api_var, show=None)
+        self._row(form, 1, "نام کاربری (ادمین)", self.user_var, show=None)
+        pw_entry = self._row(form, 2, "رمز عبور", self.pass_var, show="•")
         self.pw_entry = pw_entry
-        self._row(self.card1, 3, "نام سورس", self.source_var, show=None)
+        self._row(form, 3, "نام سورس", self.source_var, show=None)
 
-        opts = ttk.Frame(self.card1, style="Card.TFrame")
+        opts = ttk.Frame(form, style="Card.TFrame")
         opts.grid(row=4, column=0, columnspan=2, sticky="ew", pady=(4, 0))
         opts.columnconfigure(0, weight=1)
         cb1 = ttk.Checkbutton(opts, text="ذخیره رمز برای اتصال خودکار", variable=self.remember_var)
