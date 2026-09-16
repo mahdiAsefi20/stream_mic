@@ -1,0 +1,8 @@
+# PyInstaller
+build/
+dist/
+# Python
+__pycache__/
+*.pyc
+# Local GUI config (user credentials live here, never commit)
+# NOTE: %APPDATA%/NevisarMic/config.json is outside the repo by default.

@@ -7,7 +7,10 @@ a = Analysis(
     ['nevisar_mic_gui.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[
+        ('assets/fonts/Vazirmatn-Regular.ttf', 'fonts'),
+        ('assets/fonts/Vazirmatn-Bold.ttf', 'fonts'),
+    ],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
